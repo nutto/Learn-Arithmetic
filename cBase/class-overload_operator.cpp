@@ -42,12 +42,25 @@ CVector CVector::operator =(const CVector& param) {
 	this->y = param.y;  // 使用指针的方式获取值 
 	cout << "show:" << x << ',' << y << endl;
 	return *this;  // 返回本对象 
+	
+	// 以下是三种不同的定义方式决定成员函数不同的意义 
+	// int get() const {return x;}        // const member function  常量成员函数中不能使用non-static的成员变量和non-const成员函数 
+	// const int& get() {return x;}       // member function returning a const&
+	// const int& get() const {return x;} // const member function returning a const&  
+	// 详情可以查看 @link: http://www.cplusplus.com/doc/tutorial/templates/
 }
 
 int main() {
 	CVector foo (3, 1);
 	CVector bar (1, 2);
 	CVector result;
+	
+	// 常量对象,常量对象的属性被外部访问的时候表现得像常量一样 
+	const CVector con_obj(5,6); // 常量函数的成员变量可以通过构造函数初始化 
+	//  常量对象不能调用非常量的成员函数 
+	// con_obj.getN(); // 错误,不能调用非常量的成员函数
+	// con_obj.x = 1; // 错误,常量对象的成员函数不能被修改 
+	
 	result = foo + bar;
 	cout << result.x << ',' << result.y << endl;
 	// 静态变量可以通过类的作用域直接访问，也可以通过对象访问
