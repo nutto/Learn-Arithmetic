@@ -2,7 +2,6 @@
 using namespace std;
 
 
-// Î´Íê´ıĞø 
 class CVector {
 	public:
 		int x, y;
