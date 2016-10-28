@@ -15,6 +15,34 @@ T minus2 (T a, int b) {  // b为一个指定类型
 	return a - b;
 }
 
+// 定义一个类模版
+template <class T>
+class mycontainer {
+		T element;
+	public:
+		mycontainer(T a, T b) {
+			element = a + b;
+		}
+		T getEl() {
+			cout << element << endl;
+		}
+};
+
+// 重用一个类的模板
+template <>
+class mycontainer <char> {
+	char element_a;
+	char element_b;
+	public:
+		mycontainer(char a, char b) {
+			element_a = a;
+			element_b = b;
+		}
+		char getEl() {
+			cout << element_a << element_b << endl;
+		}
+}; 
+
 int main() {
 	// 指定 int 来替换模板类型 SomeType 
 	int result_i = sum<int> (10, 10);
@@ -32,6 +60,14 @@ int main() {
 	// 写死,所以不能传递一个变量进这个参数 
 	float c = 10.9; 
 	float result_f3 = minus2(c, 5); 
+
+	// 使用类模板
+	mycontainer<int> mi(1, 4);
+	mycontainer<float> ct(1.88, 4.98);
+	mycontainer<char> st('a', 'b');
+	mi.getEl();
+	ct.getEl();
+	st.getEl(); 
  
 	cout << result_i << endl
 		 << result_f << endl
